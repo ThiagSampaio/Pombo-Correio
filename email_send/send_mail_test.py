@@ -29,7 +29,7 @@ def send_mail(email, senha):
         text = message.as_string()
         session.sendmail(sender_address, receiver_address, text)
         session.quit()
-        return True
+        return (True, "Tudo OK")
 
     except smtplib.SMTPRecipientsRefused:
         return (False, "Não pode enviar para esse email")

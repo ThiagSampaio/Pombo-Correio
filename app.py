@@ -16,9 +16,8 @@ def index():
 def login():
     email = request.args.get("email")
     senha = request.args.get("senha")
-    print(f"Este é o email:{email}. Esta é a senha:{senha}")
     retorno = send_mail(email, senha)
-    return jsonify({'resposta': retorno})
+    return jsonify({'resposta_bol': retorno[0], 'mensagem': retorno[1]})
 
 
 @app.route('/data', methods=['GET'])
