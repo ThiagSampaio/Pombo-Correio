@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+from email_send.send_mail_test import *
 import pandas as pd
 import csv
 
@@ -15,8 +16,8 @@ def index():
 def login():
     email = request.args.get("email")
     senha = request.args.get("senha")
-    print(email, senha)
-    return email,senha
+    print(send_mail(email, senha))
+    return email, senha
 
 
 @app.route('/data', methods=['GET'])
