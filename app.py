@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 from email_send.send_mail_test import *
 import pandas as pd
 import csv
@@ -16,8 +16,9 @@ def index():
 def login():
     email = request.args.get("email")
     senha = request.args.get("senha")
-    print(send_mail(email, senha))
-    return email, senha
+    print(f"Este é o email:{email}. Esta é a senha:{senha}")
+    retorno = send_mail(email, senha)
+    return jsonify({'resposta': retorno})
 
 
 @app.route('/data', methods=['GET'])
