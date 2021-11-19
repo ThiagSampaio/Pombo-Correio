@@ -24,29 +24,24 @@
         <input type="text" id="senha" name="senha">
         <button class="btn" type="submit">Teste</button><br>
     </form>
-    <p>Resposta do teste:</p>
+    <p><b>AGUARDE</b> a resposta do teste:</p>
     <p id="resposta_teste"></p>
 
     <!-- Fim do Passo 1-->
 
     <h1> 2° passo:</h1>
-    <p>Faça o upload do seu arquivo <b>.CSV</b>.</p>
+    <p>Faça o upload do seu arquivo <b>.xlxs</b>.</p>
     <p>O arquivo deve estar no formato acima</p>
 
-    <form class="" action="data" method='post'>
+    <form id="data1">
         <input type='file' name='csvfile' value=''> <br>
-        <input type='submit' name='' value='Submit'>
+        <input type='submit' name='upload' value='upload'>
     </form>
-
-
-    <div class="counter-box" id="contagem_total">
-        <i class="fa fa-trophy counter-icon" aria-hidden="true"></i>
-        <span class="count-number" id="tracking_total"></span> pesquisas já realizadas no site
-    </div>
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!--Scripts autorais-->
     <!--<script src="../static/js/login_email.js"></script>-->
     <script src="../static/js/response_test.js"></script>
+    <script src="../static/js/data1.js"></script>
 </body>

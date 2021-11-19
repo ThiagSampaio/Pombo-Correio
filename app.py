@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, jsonify
+from flask.wrappers import Response
 from email_send.send_mail_test import *
 import pandas as pd
 import csv
@@ -20,15 +21,15 @@ def login():
     return jsonify({'resposta_bol': retorno[0], 'mensagem': retorno[1]})
 
 
-@app.route('/data', methods=['GET'])
+@app.route('/data', methods=['GET', 'POST'])
 def data():
+    data = []
     if request.method == 'POST':
         f = request.form['csvfile']
-        with open(f) as file:
-            csvfile = csv.reader(file)
-            for row in csvfile:
-                data.append(row)
-        return render_template('data.html', data=data)
+        data = pd.read_excel(f)
+        data_j = data.to_json
+        print(data_j)
+        return Response(data.to_json(orient='records'), mimetype='application/json')
 
 
 if __name__ == '__main__':
