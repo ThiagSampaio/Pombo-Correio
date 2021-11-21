@@ -30,6 +30,7 @@ def data():
     data = pd.read_excel(f)
     data = data[[coluna, coluna_email]]
     dicionario = data.groupby([coluna])[coluna_email].apply(list).to_dict()
+
     return data
 
 
