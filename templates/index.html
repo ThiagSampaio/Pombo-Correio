@@ -33,9 +33,13 @@
     <p>Faça o upload do seu arquivo <b>.xlxs</b>.</p>
     <p>O arquivo deve estar no formato acima</p>
 
-    <form id="data1">
-        <input type='file' name='csvfile' value=''> <br>
-        <input type='submit' name='upload' value='upload'>
+    <form id="data1" action="data">
+        <label for="fname">Nome da coluna para separar o grupo:</label><br>
+        <input type="text" id="coluna" name="coluna"><br>
+        <br>
+        <input type='file' id="database" name='database' value=''> <br>
+        <br>
+        <button type="submit" value='submit'>upload</button><br>
     </form>
 
 
@@ -43,5 +47,5 @@
     <!--Scripts autorais-->
     <!--<script src="../static/js/login_email.js"></script>-->
     <script src="../static/js/response_test.js"></script>
-    <script src="../static/js/data1.js"></script>
+    <!--<script src="../static/js/data1.js"></script> -->
 </body>

@@ -23,13 +23,24 @@ def login():
 
 @app.route('/data', methods=['GET', 'POST'])
 def data():
-    data = []
-    if request.method == 'POST':
-        f = request.form['csvfile']
+
+    coluna = request.args.get('coluna')
+    f = request.args.get('database')
+    data = pd.read_excel(f)
+    print(coluna)
+    print(f'dados{data}')
+    return data
+
+    '''
+    if request.method == 'GET':
+        f = request.args.get('database')
+        #coluna = request.args.get('coluna')
+        print(f)
         data = pd.read_excel(f)
         data_j = data.to_json
         print(data_j)
         return Response(data.to_json(orient='records'), mimetype='application/json')
+    '''
 
 
 if __name__ == '__main__':
