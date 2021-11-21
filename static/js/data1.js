@@ -6,7 +6,8 @@ $('#data1').on('submit', async (e) => {
     data = new FormData();
     data.append('file', $('#database')[0].files[0]);
     const coluna = $("#coluna").val();
-    const params = new URLSearchParams({ coluna, data });
+    const coluna_email = $("#coluna_email").val();
+    const params = new URLSearchParams({ coluna, data, coluna_email });
 
     const resp = await fetch(`/data?${params}`).then(r => r.json());
 
