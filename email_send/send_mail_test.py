@@ -46,7 +46,6 @@ def send_mail(email, senha, lista_email, titulo_email, texto_email):
 
 def send_mail_test1(email, senha):
 
-    print('estou no teste de email')
     sender_address = email
     sender_pass = senha
     receiver_address = email
