@@ -2,8 +2,9 @@
 Correio eletrônico baseado em arquivos.csv.
 <h1 align="center">Pombo-Correio</h1>
 <h3 align="center">Correio eletrônico baseado em arquivos .xlsx</h3>
+<h4 align="center">https://pombo-correio-excell.herokuapp.com/</h4>
 
-<p align="center">Este projeto tem como objetivo enviar emails com base em um arquivo excel e .docx/p>
+<p align="center">Este projeto tem como objetivo enviar emails com base em um arquivo excel e .docx </p>
 
 Tabela de objetivos
 =================
