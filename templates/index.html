@@ -33,22 +33,34 @@
     <p>Faça o upload do seu arquivo <b>.xlxs</b>.</p>
     <p>O arquivo deve estar no formato acima</p>
 
-    <form id="data1" action="data">
+    <form action="/uploader" method="POST" enctype="multipart/form-data">
+        <label for="fname">Email:</label><br>
+        <input type="text" id="email" name="email"><br>
+        <br>
+        <label for="lname">Senha:</label><br>
+        <input type="text" id="senha" name="senha"><br>
+        <br>
         <label for="fname">Nome da coluna para separar o grupo:</label><br>
-        <input type="text" id="coluna" name="coluna"><br>
+        <input type="text" id="coluna_grupo" name="coluna_grupo"><br>
         <br>
         <label for="fname">Nome da coluna que estão os emails:</label><br>
         <input type="text" id="coluna_email" name="coluna_email"><br>
         <br>
-        <input type='file' id="database" name='database' value=''> <br>
+        <label for="fname">Titulo do email:</label><br>
+        <input type="text" id="titulo_email" name="titulo_email"><br>
         <br>
-        <button type="submit" value='submit'>upload</button><br>
+        <label for="fname">Arquivo Texto:</label><br>
+        <input type='file' id="texto" name='texto' value=''><br>
+        <br>
+        <label for="fname">Arquivo Excell:</label><br>
+        <input type="file" name="database" /><br>
+        <br>
+        <input type="submit" />
     </form>
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!--Scripts autorais-->
-    <!--<script src="../static/js/login_email.js"></script>-->
     <script src="../static/js/response_test.js"></script>
-    <!--<script src="../static/js/data1.js"></script> -->
+
 </body>

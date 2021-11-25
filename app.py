@@ -1,8 +1,8 @@
 from flask import Flask, render_template, request, jsonify
-from flask.wrappers import Response
 from email_send.send_mail_test import *
 import pandas as pd
-import csv
+from email_send.processar_texto import *
+from werkzeug.utils import secure_filename
 
 
 app = Flask(__name__)
@@ -17,21 +17,43 @@ def index():
 def login():
     email = request.args.get("email")
     senha = request.args.get("senha")
-    retorno = send_mail(email, senha)
+    retorno = send_mail_test1(email, senha)
     return jsonify({'resposta_bol': retorno[0], 'mensagem': retorno[1]})
 
 
-@app.route('/data', methods=['GET', 'POST'])
-def data():
+@app.route('/uploader', methods=['GET', 'POST'])
+def upload_file():
+    lista_emails_erro_final = []
+    if request.method == 'POST':
+        # Pegar o formulário
+        email = request.form.get('email')
+        senha = request.form.get('senha')
+        coluna_grupo = request.form.get('coluna_grupo')
+        coluna_email = request.form.get('coluna_email')
+        titulo_email = request.form.get('titulo_email')
 
-    coluna = request.args.get('coluna')
-    coluna_email = request.args.get('coluna_email')
-    f = request.args.get('database')
-    data = pd.read_excel(f)
-    data = data[[coluna, coluna_email]]
-    dicionario = data.groupby([coluna])[coluna_email].apply(list).to_dict()
+        # Pegar os arquivos 1 -> docx 2-> xlms
+        texto_email = request.files['texto']
+        texto_email.save(secure_filename(texto_email.filename))
 
-    return data
+        database = request.files['database']
+        database.save(secure_filename(database.filename))
+
+        # tratar os arquivos
+        texto_email_tratado = docx_2_html(texto_email)
+
+        data = pd.read_excel(database)
+        data = data[[coluna_grupo, coluna_email]]
+        data_dicionario = data.groupby([coluna_grupo])[
+            coluna_email].apply(list).to_dict()
+
+        # iterando o dicionario
+        for key_estado in data_dicionario:
+            emails = send_mail(
+                email, senha, data_dicionario[key_estado], titulo_email, texto_email_tratado.value)
+            lista_emails_erro_final.append(emails)
+
+        return jsonify({'emails_com_erro': lista_emails_erro_final})
 
 
 if __name__ == '__main__':
