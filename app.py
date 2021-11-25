@@ -3,6 +3,8 @@ from email_send.send_mail_test import *
 import pandas as pd
 from email_send.processar_texto import *
 from werkzeug.utils import secure_filename
+import os
+import sys
 
 
 app = Flask(__name__)
@@ -58,4 +60,8 @@ def upload_file():
 
 if __name__ == '__main__':
 
-    app.run(debug=True)
+    # produção
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
+    # dev
+    # app.run(debug=True)
